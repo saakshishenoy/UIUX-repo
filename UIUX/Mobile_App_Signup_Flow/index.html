@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignFlow - Modern Signup</title>
+    <style>
+        :root {
+            --primary-color: #4e7df1;
+            --primary-light: #eef2ff;
+            --text-color: #333;
+            --error-color: #e74c3c;
+            --success-color: #2ecc71;
+            --border-color: #e1e5eb;
+            --background-color: #ffffff;
+            --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #f7f9fc;
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            padding: 16px;
+        }
+
+        .signup-container {
+            background-color: var(--background-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            padding: 32px;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .logo svg {
+            height: 40px;
+            width: auto;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            background-color: #fafafa;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--background-color);
+            box-shadow: 0 0 0 3px rgba(78, 125, 241, 0.1);
+        }
+
+        .error {
+            color: var(--error-color);
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        input.invalid {
+            border-color: var(--error-color);
+        }
+
+        input.invalid+.error {
+            display: block;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            padding-right: 48px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s;
+        }
+
+        .toggle-password:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .password-strength {
+            height: 4px;
+            background: #e1e5eb;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .password-strength-meter {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-size: 13px;
+            color: #666;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        button:hover {
+            background-color: #3867d6;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .social-login {
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .social-login-text {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .social-login-text::before,
+        .social-login-text::after {
+            content: "";
+            display: inline-block;
+            width: 30%;
+            height: 1px;
+            background-color: var(--border-color);
+            position: absolute;
+            top: 50%;
+        }
+
+        .social-login-text::before {
+            left: 0;
+        }
+
+        .social-login-text::after {
+            right: 0;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .social-button {
+            width: 54px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .social-button:hover {
+            background-color: #f7f9fc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .social-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .login-link {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .step {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            margin: 0 5px;
+        }
+
+        .step.active {
+            background-color: var(--primary-color);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: var(--border-color);
+            border-radius: 2px;
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 33.33%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-message {
+            text-align: center;
+            display: none;
+        }
+
+        .success-message svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .success-message h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--success-color);
+        }
+
+        .success-message p {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+        }
+
+        .btn-prev {
+            background-color: transparent;
+            color: #666;
+            border: 1px solid var(--border-color);
+            width: 45%;
+        }
+
+        .btn-prev:hover {
+            background-color: #f7f9fc;
+        }
+
+        .btn-next {
+            width: 45%;
+        }
+
+
+        .form-step:first-child .btn-prev {
+            visibility: hidden;
+        }
+
+        #signup-form.completed .form-step {
+            display: none;
+        }
+
+        #signup-form.completed .success-message {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="signup-container">
+            <div class="logo">
+                <svg viewBox="0 0 100 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M14 5C14 2.23858 16.2386 0 19 0H27C29.7614 0 32 2.23858 32 5V19C32 21.7614 29.7614 24 27 24H19C16.2386 24 14 21.7614 14 19V5Z"
+                        fill="#4E7DF1" />
+                    <path
+                        d="M0 5C0 2.23858 2.23858 0 5 0H13C15.7614 0 18 2.23858 18 5V19C18 21.7614 15.7614 24 13 24H5C2.23858 24 0 21.7614 0 19V5Z"
+                        fill="#4E7DF1" fill-opacity="0.6" />
+                    <path d="M42 7.5H46.5C49.5376 7.5 52 9.96243 52 13V13C52 16.0376 49.5376 18.5 46.5 18.5H42V7.5Z"
+                        stroke="#333" stroke-width="2" />
+                    <path d="M57 7.5H61.5C64.5376 7.5 67 9.96243 67 13V13C67 16.0376 64.5376 18.5 61.5 18.5H57V7.5Z"
+                        stroke="#333" stroke-width="2" />
+                    <path d="M72 7.5L80 18.5" stroke="#333" stroke-width="2" />
+                    <path d="M80 7.5L72 18.5" stroke="#333" stroke-width="2" />
+                    <path d="M84 7.5H91.5C93.433 7.5 95 9.067 95 11V11C95 12.933 93.433 14.5 91.5 14.5H87" stroke="#333"
+                        stroke-width="2" />
+                    <path d="M87 14.5H92.5C94.433 14.5 96 16.067 96 18V18C96 19.933 94.433 21.5 92.5 21.5H84"
+                        stroke="#333" stroke-width="2" />
+                </svg>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+
+            <form id="signup-form">
+                <!-- Step 1 -->
+                <div class="form-step active" id="step1">
+                    <h1>Create your account</h1>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" placeholder="name@company.com" required>
+                        <div class="error">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group password-container">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="At least 8 characters"
+                            required>
+                        <div class="error">Password must be at least 8 characters</div>
+                        <div class="password-strength">
+                            <div class="password-strength-meter"></div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="toggle-password-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Show Password
+                    </button>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+                    </div>
+
+                    <button type="button" class="btn-next">Continue</button>
+
+                    <div class="social-login">
+                        <div class="social-login-text">Or sign up with</div>
+                        <div class="social-buttons">
+                            <button type="button" class="social-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22.56 12.25C22.56 11.47 22.49 10.72 22.36 10H12V14.255H17.92C17.665 15.63 16.89 16.795 15.725 17.575V20.335H19.28C21.36 18.42 22.56 15.6 22.56 12.25Z"
+                                        fill="#4285F4" />
+                                    <path
+                                        d="M12 23C14.97 23 17.46 22.015 19.28 20.335L15.725 17.575C14.79 18.205 13.54 18.57 12 18.57C9.13499 18.57 6.70999 16.635 5.84499 14H2.16998V16.83C3.98998 20.48 7.70499 23 12 23Z"
+                                        fill="#34A853" />
+                                    <path
+                                        d="M5.845 14C5.625 13.34 5.5 12.635 5.5 11.91C5.5 11.185 5.625 10.48 5.845 9.82V7H2.17C1.4 8.47 0.999995 10.15 0.999995 11.91C0.999995 13.67 1.4 15.35 2.17 16.83L5.845 14Z"
+                                        fill="#FBBC05" />
+                                    <path
+                                        d="M12 5.25C13.62 5.25 15.065 5.81 16.205 6.89L19.36 3.735C17.455 1.96 14.965 0.909996 12 0.909996C7.70499 0.909996 3.98998 3.43 2.16998 7.07L5.84499 9.89C6.70999 7.255 9.13499 5.25 12 5.25Z"
+                                        fill="#EA4335" />
+                                </svg>
+                            </button>
+                            <button type="button" class="social-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 16.9913 5.65687 21.1283 10.4375 21.8785V14.8906H7.89844V12H10.4375V9.79688C10.4375 7.29063 11.9304 5.90625 14.2146 5.90625C15.3084 5.90625 16.4531 6.10156 16.4531 6.10156V8.5625H15.1922C13.95 8.5625 13.5625 9.33334 13.5625 10.1242V12H16.3359L15.8926 14.8906H13.5625V21.8785C18.3431 21.1283 22 16.9913 22 12Z"
+                                        fill="#1877F2" />
+                                    <path
+                                        d="M15.8926 14.8906L16.3359 12H13.5625V10.1242C13.5625 9.33334 13.95 8.5625 15.1922 8.5625H16.4531V6.10156C16.4531 6.10156 15.3084 5.90625 14.2146 5.90625C11.9304 5.90625 10.4375 7.29063 10.4375 9.79688V12H7.89844V14.8906H10.4375V21.8785C10.9423 21.9592 11.4631 22 12 22C12.5369 22 13.0577 21.9592 13.5625 21.8785V14.8906H15.8926Z"
+                                        fill="white" />
+                                </svg>
+                            </button>
+                            <button type="button" class="social-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.543 12.0866C17.5245 10.1594 18.8254 9.10152 18.898 9.05072C17.9758 7.7033 16.5418 7.49024 16.0399 7.47391C14.8197 7.34642 13.6411 8.20157 13.0234 8.20157C12.3891 8.20157 11.4332 7.48799 10.4001 7.51227C9.06646 7.53654 7.83371 8.31637 7.13912 9.49508C5.72143 11.8708 6.78876 15.3933 8.15076 17.2855C8.83349 18.2155 9.63757 19.2653 10.6799 19.2248C11.6966 19.1807 12.0839 18.5631 13.3058 18.5631C14.5169 18.5631 14.8807 19.2248 15.9462 19.201C17.0442 19.1807 17.7432 18.2517 18.4042 17.3127C19.1921 16.224 19.5062 15.1634 19.5248 15.1166C19.4955 15.1058 17.5654 14.3877 17.543 12.0866Z"
+                                        fill="black" />
+                                    <path
+                                        d="M15.6662 6.02833C16.2216 5.34183 16.5954 4.40243 16.4871 3.45703C15.7188 3.48724 14.7746 3.98703 14.1974 4.65722C13.6877 5.25049 13.237 6.22097 13.3637 7.13353C14.2276 7.19651 15.0891 6.70861 15.6662 6.02833Z"
+                                        fill="black" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-link">
+                        Already have an account? <a href="#">Log in</a>
+                    </div>
+                </div>
+
+  
+                <div class="form-step" id="step2">
+                    <h1>Personal Information</h1>
+
+                    <div class="form-group">
+                        <label for="fullname">Full name</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                        <div class="error">Please enter your full name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
+                        <div class="error">Please enter a valid phone number</div>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-prev">Back</button>
+                        <button type="button" class="btn-next">Continue</button>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step3">
+                    <h1>Complete Your Profile</h1>
+
+                    <div class="form-group">
+                        <label for="interests">What brings you here?</label>
+                        <select id="interests" name="interests" required>
+                            <option value="" disabled selected>Select an option</option>
+                            <option value="personal">Personal use</option>
+                            <option value="business">Business</option>
+                            <option value="education">Education</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">Receive updates about products and features</label>
+                    </div>
+
+                    <div class="nav-buttons">
+                        <button type="button" class="btn-prev">Back</button>
+                        <button type="submit" class="btn-next">Create Account</button>
+                    </div>
+                </div>
+
+
+                <div class="success-message">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999"
+                            stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22 4L12 14.01L9 11.01" stroke="#2ECC71" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <h2>Account created successfully!</h2>
+                    <p>We've sent a confirmation email to your inbox.</p>
+                    <button type="button" class="continue-btn">Continue to App</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('signup-form');
+            const steps = document.querySelectorAll('.form-step');
+            const progressBar = document.querySelector('.progress');
+            const nextButtons = document.querySelectorAll('.btn-next');
+            const prevButtons = document.querySelectorAll('.btn-prev');
+            const passwordInput = document.getElementById('password');
+            const passwordStrengthMeter = document.querySelector('.password-strength-meter');
+
+            let currentStep = 0;
+
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function () {
+
+                    if (button.type === 'submit') {
+                     
+                        form.classList.add('completed');
+                        return;
+                    }
+
+                    const currentStepElement = steps[currentStep];
+                    const inputs = currentStepElement.querySelectorAll('input[required], select[required]');
+                    let isValid = true;
+
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            input.classList.add('invalid');
+                            isValid = false;
+                        } else {
+                            input.classList.remove('invalid');
+                        }
+
+
+                        if (input.type === 'email' && !validateEmail(input.value)) {
+                            input.classList.add('invalid');
+                            isValid = false;
+                        }
+
+                        if (input.type === 'password' && input.value.length < 8) {
+                            input.classList.add('invalid');
+                            isValid = false;
+                        }
+                    });
+
+                    if (!isValid) return;
+
+
+                    steps[currentStep].classList.remove('active');
+                    currentStep++;
+                    steps[currentStep].classList.add('active');
+
+                    updateProgress();
+                });
+            });
+
+
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    steps[currentStep].classList.remove('active');
+                    currentStep--;
+                    steps[currentStep].classList.add('active');
+
+
+                    updateProgress();
+                });
+            });
+
+
+            const togglePasswordBtn = document.querySelector('.toggle-password-btn');
+            togglePasswordBtn.addEventListener('click', function () {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                if (type === 'password') {
+                    this.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        Show Password
+                    `;
+                } else {
+                    this.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                        Hide Password
+                    `;
+                }
+            });
+
+
+            passwordInput.addEventListener('input', function () {
+                const password = this.value;
+                const strength = calculatePasswordStrength(password);
+
+                passwordStrengthMeter.style.width = strength + '%';
+                if (strength < 25) {
+                    passwordStrengthMeter.style.backgroundColor = '#e74c3c';
+                } else if (strength < 50) {
+                    passwordStrengthMeter.style.backgroundColor = '#f39c12';
+                } else if (strength < 75) {
+                    passwordStrengthMeter.style.backgroundColor = '#f1c40f';
+                } else {
+                    passwordStrengthMeter.style.backgroundColor = '#2ecc71';
+                }
+
+
+                if (password.length >= 8) {
+                    this.classList.remove('invalid');
+                }
+            });
+
+
+            const inputs = document.querySelectorAll('input[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function () {
+                    if (!this.value.trim()) {
+                        this.classList.add('invalid');
+                    } else {
+                        this.classList.remove('invalid');
+
+
+                        if (this.type === 'email' && !validateEmail(this.value)) {
+                            this.classList.add('invalid');
+                        }
+
+
+                        if (this.type === 'password' && this.value.length < 8) {
+                            this.classList.add('invalid');
+                        }
+                    }
+                });
+
+                input.addEventListener('input', function () {
+                    if (this.value.trim()) {
+                        this.classList.remove('invalid');
+                    }
+                });
+            });
+
+
+            function validateEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+
+            function calculatePasswordStrength(password) {
+                let strength = 0;
+
+                strength += Math.min(password.length * 3.125, 25);
+
+                if (/[A-Z]/.test(password)) strength += 25; 
+                if (/[0-9]/.test(password)) strength += 25; 
+                if (/[^A-Za-z0-9]/.test(password)) strength += 25; 
+
+                return strength;
+            }
+
+            function updateProgress() {
+                const progress = ((currentStep + 1) / steps.length) * 100;
+                progressBar.style.width = progress + '%';
+            }
+
+            const continueBtn = document.querySelector('.continue-btn');
+            continueBtn.addEventListener('click', function () {
+                alert('Redirecting to app dashboard...');
+
+            });
+        });
+    </script>
+</body>
+
+</html>

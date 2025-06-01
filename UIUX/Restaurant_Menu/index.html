@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Modern Dining</title>
+    <link rel="stylesheet" href="styless.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">LUMINA</div>
+            <div class="nav-links">
+                <a href="#" class="active">Menu</a>
+                <a href="#">About</a>
+                <a href="#">Reservations</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Haute cuisine, redefined</h1>
+                <p>Cuisine that lingers long after the last bite.</p>
+                <div class="hero-buttons">
+                    <button class="btn primary">View Menu</button>
+                    <button class="btn secondary">Reserve a Table</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="menu-categories">
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="starters">Starters</button>
+                <button class="tab-btn" data-category="mains">Main Courses</button>
+                <button class="tab-btn" data-category="desserts">Desserts</button>
+                <button class="tab-btn" data-category="drinks">Drinks</button>
+            </div>
+
+            <div class="menu-container">
+                <!-- Starters Section -->
+                <div class="menu-section active" id="starters">
+                    <h2>Starters</h2>
+
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Crispy Calamari.png" alt="Crispy Calamari">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Crispy Calamari</h3>
+                                    <span class="price">$14</span>
+                                </div>
+                                <p class="description">Tender squid lightly battered and fried, served with house-made
+                                    aioli and lemon wedge</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Seafood</span>
+                                    <span class="tag">Gluten</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Truffle Arancini.png" alt="Truffle Arancini">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Truffle Arancini</h3>
+                                    <span class="price">$16</span>
+                                </div>
+                                <p class="description">Risotto balls infused with black truffle, stuffed with mozzarella
+                                    and served with basil pesto</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Vegetarian</span>
+                                    <span class="tag">Gluten</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Tuna Tartare.png" alt="Tuna Tartare">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Tuna Tartare</h3>
+                                    <span class="price">$18</span>
+                                </div>
+                                <p class="description">Fresh yellowfin tuna diced and tossed with avocado, cucumber,
+                                    ponzu sauce and sesame seeds</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Raw</span>
+                                    <span class="tag">Seafood</span>
+                                    <span class="tag">GF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Courses Section -->
+                <div class="menu-section" id="mains">
+                    <h2>Main Courses</h2>
+
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Pan Seared Salmon.png" alt="Pan Seared Salmon">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Pan Seared Salmon</h3>
+                                    <span class="price">$28</span>
+                                </div>
+                                <p class="description">Wild caught salmon with herb crust, served with roasted fennel,
+                                    citrus salad and dill sauce</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Seafood</span>
+                                    <span class="tag">GF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Wild Mushroom Risotto.png" alt="Mushroom Risotto">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Wild Mushroom Risotto</h3>
+                                    <span class="price">$24</span>
+                                </div>
+                                <p class="description">Creamy arborio rice with assorted wild mushrooms, white wine,
+                                    parmesan and fresh herbs</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Vegetarian</span>
+                                    <span class="tag">GF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Braised Short Rib.png" alt="Braised Short Rib">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Braised Short Rib</h3>
+                                    <span class="price">$32</span>
+                                </div>
+                                <p class="description">Slow-cooked beef short rib with red wine reduction, truffle
+                                    mashed potatoes and seasonal vegetables</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">GF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts Section -->
+                <div class="menu-section" id="desserts">
+                    <h2>Desserts</h2>
+
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Chocolate Fondant.png" alt="Chocolate Fondant">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Chocolate Fondant</h3>
+                                    <span class="price">$12</span>
+                                </div>
+                                <p class="description">Warm chocolate cake with a molten center, served with vanilla
+                                    bean ice cream and fresh berries</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Vegetarian</span>
+                                    <span class="tag">Gluten</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Panna Cotta.png" alt="Panna Cotta">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Vanilla Bean Panna Cotta</h3>
+                                    <span class="price">$10</span>
+                                </div>
+                                <p class="description">Silky smooth Italian custard infused with Madagascar vanilla,
+                                    topped with seasonal fruit compote</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Vegetarian</span>
+                                    <span class="tag">GF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Lemon Tart.png" alt="Lemon Tart">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Lemon Tart</h3>
+                                    <span class="price">$11</span>
+                                </div>
+                                <p class="description">Buttery shortcrust pastry filled with tangy lemon curd, topped
+                                    with Italian meringue and candied lemon</p>
+                                <div class="dietary-tags">
+                                    <span class="tag">Vegetarian</span>
+                                    <span class="tag">Gluten</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Drinks Section -->
+                <div class="menu-section" id="drinks">
+                    <h2>Drinks</h2>
+
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Signature Cocktail.png" alt="Signature Cocktail">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Lumina Signature</h3>
+                                    <span class="price">$15</span>
+                                </div>
+                                <p class="description">House infused botanical gin, elderflower liqueur, fresh lime,
+                                    cucumber, mint and sparkling water</p>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="red wine.png" alt="Red Wine">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Wine Selection</h3>
+                                    <span class="price">from $12</span>
+                                </div>
+                                <p class="description">Curated selection of wines by the glass or bottle. Ask your
+                                    server for today's recommendations</p>
+                            </div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="item-image">
+                                <img src="Craft Beer.png" alt="Craft Beer">
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <h3>Craft Beer</h3>
+                                    <span class="price">$8</span>
+                                </div>
+                                <p class="description">Rotating selection of local craft beers. Please ask for our
+                                    current draft and bottled options</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="special-offers">
+            <div class="special-card">
+                <div class="special-content">
+                    <h2>Chef's Tasting Menu</h2>
+                    <p>Experience our 5-course seasonal tasting menu</p>
+                    <p class="price">$85 per person</p>
+                    <p class="note">Wine pairing available for additional $45</p>
+                    <button class="btn secondary">Learn More</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>LUMINA</h3>
+                <p>Modern cuisine rooted in tradition</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Monday - Thursday: 5pm - 10pm</p>
+                <p>Friday - Saturday: 5pm - 11pm</p>
+                <p>Sunday: 5pm - 9pm</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>123 Culinary Avenue</p>
+                <p>City, State 12345</p>
+                <p>Phone: (555) 123-4567</p>
+                <p>Email: info@lumina.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 LUMINA Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const menuSections = document.querySelectorAll('.menu-section');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and sections
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                menuSections.forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked button and corresponding section
+                button.classList.add('active');
+                const category = button.dataset.category;
+                document.getElementById(category).classList.add('active');
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+    </script>
+</body>
+
+</html>
